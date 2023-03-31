@@ -4,6 +4,7 @@ To demonstrate the issue, let's write a similar contract and analyze the problem
 Suppose the minimum lock date is set to **1672612831**, which corresponds to **Jan 01 2023** in the Unix timestamp.
 If we want to lock the contract for a second, we should call it with `_endDate` set to **1672612832**.
 
+```
 pragma solidity ^0.8.0;
 
 contract datecheck {
@@ -20,6 +21,7 @@ contract datecheck {
         return endDate;
     }
 }
+```
 
 However, if we sum up `_endDate` and `block.timestamp`, the result would be a date far in the future, specifically **3352772291**,
 which corresponds to **Mar 30, 2076**. This means that the contract would be locked for a much longer period than intended,
